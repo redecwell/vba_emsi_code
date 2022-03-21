@@ -1,0 +1,26 @@
+Sub get_data()
+
+Dim data(1 To 2)
+
+data(1) = "https://jobs.lever.co/economicmodeling/d5ff5702-540a-46b3-ac3b-c5c1258eef65"
+data(2) = "https://jobs.lever.co/economicmodeling/d5ff5702-540a-46b3-ac3b-c5c1258eef65"
+
+Dim i As Integer
+
+For i = 1 To 2
+
+Set request = CreateObject("WINHTTP.WinHTTPRequest.5.1")
+request.Open "GET", data(i), False
+request.send
+request.responseText
+Dim informationelements As Object
+Dim printelements As String
+Dim HTMLEle As New HTMLDocument
+HTMLEle.body.innerHTML = request.responseText
+
+Set informationelements = HTMLEle.getElementsByClassName("posting-headline")
+printelements = informationelements(0).innerText
+Debug.Print printelements
+
+Next i
+End Sub
