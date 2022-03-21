@@ -1,0 +1,4 @@
+var links = document.getElementsByTagName('a');
+var total_links = []
+for(var i = 0; i< links.length; i++){
+total_links += links[i].href + ',';}
